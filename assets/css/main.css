@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Old School Adventures Font */
+@font-face {
+    font-family: 'old-school-adventures';
+    src: url('~/assets/font/old-school-adventures/old-school-adventures.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
