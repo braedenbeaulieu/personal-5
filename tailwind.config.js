@@ -11,7 +11,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'mono-2': 'old-school-adventures'
+				'mono-2': 'videotype'
 			},
 			animation: {
 				'blink': 'blink 2s linear infinite',

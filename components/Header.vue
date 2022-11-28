@@ -3,19 +3,19 @@
         <div class="max-w-6xl mx-auto py-2 px-4 flex justify-between items-center">
             <NuxtLink to="/" class="h1 text-3xl font-bold pt-1 pb-2">bb</NuxtLink>
             <div class="flex justify-end items-center">
+                <p class="text-xs mr-8">v0.2.1-22314.221</p>
                 <p class="flex items-center" v-html="date_str"></p>
             </div>
         </div>
     </header>
 </template>
 <script setup lang="ts">
+    // Date Functionality
     let date = ref(new Date())
-    // let date_str = ref(date.value.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'}))
+    let refresh_date = () => date.value = new Date()
+
     let date_str = ref('')
-
     let refresh_date_string = () => {
-        date.value = new Date()
-
         let minutes: string = date.value.getMinutes().toString()
         if(date.value.getMinutes() < 10) {
             minutes = `0${date.value.getMinutes().toString()}`
@@ -27,10 +27,25 @@
                @ ${date.value.getHours()} 
                <span class="animate-blink">:</span> ${minutes} ${meridian}`
     }
-    refresh_date_string()
 
-    // every 5 seconds? check the time
-    let five_second_interval = setInterval(() => {
+    // seconds until the end of the minute
+    let minute_interval: any
+    let milliseconds_until_minute_end = ref()
+    let refresh_milliseconds_until_minute_end = () => {
+        clearInterval(minute_interval)
+        milliseconds_until_minute_end.value = (60 - date.value.getSeconds()) * 1000
+        minute_interval = setInterval(() => {
+            update_date_loop()
+        }, milliseconds_until_minute_end.value)
+    }
+    let update_date_loop = () => {
+        refresh_date()
         refresh_date_string()
-    }, 5000)
+        refresh_milliseconds_until_minute_end()
+    }
+    update_date_loop()
+
+
+    // Weather functionality
+    // const { data: weather, pending: pending_weather } = await useFetch('/api/weather')
 </script>

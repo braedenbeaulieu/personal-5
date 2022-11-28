@@ -1,45 +1,127 @@
 <template>
     <div class="grid grid-cols-4 gap-4 m-4">
-        <section class="bg-gray-200 p-4 border-2 border-black">
+        <section class="bg-gray-200 p-4 border-2 border-black col-span-2 md:col-span-1">
             <div class="speech-bubble p-4">
                 <h2 class="text-xl">Welcome!</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="text-sm">I am Braeden, a Web Developer.</p>
             </div>
         </section>
 
-        <section class="bg-gray-200 border-2 border-black col-span-3">
+        <section class="bg-gray-200 border-2 border-black col-span-2 md:col-span-3">
             <div class="border-b-2 border-black">
-                <h2 class="m-4 p-2 text-center uppercase">Portfolio Data</h2>
+                <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
+                    Portfolio Data
+                    <svg class="-mr-1" width="28px" height="28px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="m74.801 84.102h6.1992v6.1992h-6.1992z"/>
+                            <path d="m68.602 9.6016h6.1992v6.1992h-6.1992z"/>
+                            <path d="m81 77.898v6.2031h6.1992v-12.402h-6.1992z"/>
+                            <path d="m87.199 65.5v6.1992h6.3008v-12.398h-6.3008z"/>
+                            <path d="m93.5 46.898h-6.1992v-24.797h-6.3008v-6.1992h-6.1992v6.1992h-12.398v-6.1992l-0.003906-6.3008h6.1992l0.003906-6.2031h-43.398v6.1992l-6.2031 0.003906h-6.1992v18.598h-6.3008v6.1992h-6.1992v55.793h6.1992v6.1992h6.1992l6.3008 0.007813h55.797v-6.1992h-61.996v-6.1992h-6.3008v-43.395h6.1992v43.395h6.3008v-12.398h6.1992v-12.398l-6.1992-0.003906v-43.395h6.1992v43.395h6.1992v-6.1992h62v6.1992h6.1992v-12.398h-6.0977zm-18.699 0h-43.398v-30.996l-0.003906-6.3008h24.801v18.598h24.801v18.598l-6.1992 0.003906z"/>
+                        </g>
+                    </svg>
+                </h2>
             </div>
-            <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
-                <a href="https://recipes.braedenbeaulieu.ca/" class="block text-blue-700 underline mb-2">Recipe website</a>
-                <p>This is my personal collection of recipes.</p>
-            </div>
-            <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
-                <a href="https://www.braedenbeaulieu.ca/" class="block text-blue-700 underline mb-2">Portfolio website</a>
-                <p>This is my personal portfolio website.</p>
+
+            <div    
+                v-for="item in portfolio_items" :key="item.id"
+                class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white"
+            >
+                <a :href="item.link" target="_blank" class="block text-blue-700 underline mb-2">{{ item.title }}</a>
+                <p  class="text-md">{{ item.description }}</p>
             </div>
         </section>
         
         <section class="bg-gray-200 border-2 border-black col-span-2">
             <div class="border-b-2 border-black">
-                <h2 class="m-4 p-2 text-center uppercase">Skills</h2>
+                <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
+                    User Data
+                    <svg class="-mr-5" width="50px" height="50px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="m36 25h3.8438v15.277h-3.8438z"/>
+                            <path d="m44 25h3.7461v15.277h-3.7461z"/>
+                            <path d="m52 25v15.277h3.8438v-15.277z"/>
+                            <path d="m63.211 51.785h7.7891v15.477h-7.6914v3.8711h-3.8438v3.8672h-26.621v-3.8672h-3.8438v-23.215h34.211zm3.8438 11.508v-7.7383h-3.8438v7.7383z" fill-rule="evenodd"/>
+                        </g>
+                    </svg>
+
+                </h2>
             </div>
             <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h3 class="text-md mb-4 uppercase">Interests</h3>
+                <p class="text-md leading-6">Although I am a WordPress developer by trade, I have quickly developed a hobby for building projects using the Vue framework Nuxt.<br> Hence this website.</p>
             </div>
         </section>
         
         <section class="bg-gray-200 border-2 border-black col-span-2">
             <div class="border-b-2 border-black">
-                <h2 class="m-4 p-2 text-center uppercase">Contact</h2>
+                <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
+                    Contact Details
+                    <svg class="-mr-5" width="50px" height="50px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m32 34h36v4h-4v4h-4v4h-4v4h-4v4h-4v-4h-4v-4h-4v-4h-4v-4h-4zm0 4v4h4v4h4v4h4v4h4v4h4v-4h4v-4h4v-4h4v-4h4v-4h4v28h-44v-28z" fill-rule="evenodd"/>
+                    </svg>
+                </h2>
             </div>
             <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <form @submit.prevent="false">
+                    <fieldset class="border-2 border-solid border-gray-900 p-3">
+                        <legend class="text-lg mb-2 px-2">Contact Method</legend>
+                        <CustomDropdown
+                            :items="contact_methods"
+                            :default="'go'"
+                            class="select mb-4"
+                            @input="dropdown_input" 
+                        />
+                        <a :href="contact_button_url" target="_blank" class="block text-center relative w-36 h-12 bg-black z-10 ml-1 mt-1"><div class="w-full h-full leading-7 bg-white hover:bg-gray-200 absolute z-0 border-2 border-black p-2 -top-1 -left-1 hover:top-0 hover:left-0">Go!</div></a>
+                    </fieldset>
+                </form>
             </div>
         </section>
     </div>
 </template>
+<script setup lang="ts">
+    let router = useRouter()
+
+    const portfolio_items = [
+        {
+            id: 1,
+            title: 'Recipe Website',
+            link: 'https://recipes.braedenbeaulieu.ca/',
+            description: 'This is my personal recipe website!'
+        },
+        {
+            id: 2,
+            title: 'Elev8 Web Studio',
+            link: 'https://www.elev8webstudio.com/',
+            description: 'Professional WordPress website development, design, hosting and maintenance.'
+        },
+        {
+            id: 3,
+            title: 'Recipe Website',
+            link: 'https://recipes.braedenbeaulieu.ca/',
+            description: 'This is my personal recipe website!'
+        },
+    ]
+
+    let contact_button_url = ref('https://twitter.com/braedenbeaulieu')
+    let contact_methods = [
+        {
+            name: 'Twitter',
+            value: 'https://twitter.com/braedenbeaulieu',
+            selected: true,
+        },
+        {
+            name: 'Github',
+            value: 'https://github.com/braedenbeaulieu',
+            selected: false,
+        },
+    ]
+    
+    let dropdown_input = (method: any) => {
+        console.log(method.value)
+        contact_button_url.value = method.value
+    }
+</script>
 <style>
     .speech-bubble {
         position: relative;
@@ -47,10 +129,10 @@
         border-radius: 0;
         max-width: 320px;
         height: auto;
-        margin-left: 8px;
+        /* margin-left: 8px; */
         border: 2px solid black;
     }
-
+    /* 
     .speech-bubble::before {
         content: '';
         position: absolute;
@@ -79,5 +161,40 @@
         border-bottom: 0;
         margin-top: -7.5px;
         margin-left: -16px;
+    } */
+
+    
+    .speech-bubble::before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: calc(50% - 2px);
+        top: unset;
+        width: 0;
+        height: 0;
+        border: 24px solid transparent;
+        border-top-color: black;
+        border-bottom: 0;
+        border-right: 0;
+        margin-left: -10px;
+        margin-bottom: -20px;
     }
+
+    .speech-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        top: unset;
+        width: 0;
+        height: 0;
+        border: 20px solid transparent;
+        border-top-color: white;
+        border-bottom: 0;
+        border-right: 0;
+        margin-left: -10px;
+        margin-bottom: -20px;
+    }
+    /* @media(min-width: 768px) {
+    } */
 </style>

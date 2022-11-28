@@ -13,4 +13,8 @@
         background-size: 15px 15px;
         background-position: 0 0, 7.5px 7.5px;
     }
+
+    body {
+        cursor: url('~/assets/img/pixel-pointer.png'), auto;
+    }
 </style>
