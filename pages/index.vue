@@ -13,7 +13,7 @@
         <section class="bg-gray-200 p-4 border-2 border-black col-span-6 md:col-span-4 grid content-end">
             <div class="speech-bubble p-4 justify-self-center">
                 <h2 class="text-xl">Hello!</h2>
-                <p class="text-sm">I'm Braeden, a Web Developer. Cras scelerisque, dolor vitae suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.</p>
+                <p class="text-sm">I'm Braeden, a Web Developer. Cras scelerisque, dolor vitaes suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.</p>
             </div>
             <div class="max-w-sm justify-self-center"><img class="max-w-full" src="~/assets/img/super-mario.gif" alt="Mario"></div>
         </section>
