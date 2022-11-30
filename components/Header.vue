@@ -3,7 +3,6 @@
         <div class="max-w-6xl mx-auto py-2 px-4 flex justify-between items-center">
             <NuxtLink to="/" class="h1 text-3xl font-bold pt-1 pb-2">bb</NuxtLink>
             <div class="flex justify-end items-center">
-                <p class="text-xs mr-8">v0.2.1-22314.221</p>
                 <p class="flex items-center" v-html="date_str"></p>
             </div>
         </div>
@@ -21,14 +20,16 @@
             minutes = `0${date.value.getMinutes().toString()}`
         }
 
+        let hours: string|number = date.value.getHours() % 12 || 12
+        hours = hours < 10 ? `0${hours.toString()}` : hours.toString()
+
         let meridian = date.value.toLocaleTimeString('en-US').slice(-2)
 
-        date_str.value = `${date.value.getDate()}/${date.value.getMonth() + 1} / ${date.value.getFullYear()} 
-               @ ${date.value.getHours()} 
+        date_str.value = `${date.value.getDate()}/${date.value.getMonth() + 1}/${date.value.getFullYear()}
+               @ ${hours}
                <span class="animate-blink">:</span> ${minutes} ${meridian}`
     }
 
-    // seconds until the end of the minute
     let minute_interval: any
     let milliseconds_until_minute_end = ref()
     let refresh_milliseconds_until_minute_end = () => {

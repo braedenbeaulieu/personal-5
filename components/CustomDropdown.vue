@@ -88,6 +88,11 @@
     transform: rotate(45deg);
 }
 
+.custom-select .selected.open .custom-select-toggle::after {
+    margin-top: 20px;
+    transform: rotate(225deg);
+}
+
 .custom-select .items {
     color: #1f2937;
     border-radius: 0;

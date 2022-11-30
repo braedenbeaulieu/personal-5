@@ -1,13 +1,24 @@
 <template>
-    <div class="grid grid-cols-4 gap-4 m-4">
-        <section class="bg-gray-200 p-4 border-2 border-black col-span-2 md:col-span-1">
-            <div class="speech-bubble p-4">
-                <h2 class="text-xl">Welcome!</h2>
-                <p class="text-sm">I am Braeden, a Web Developer.</p>
+    <section class="bg-gray-200 p-4 m-4 border-2 border-black col-span-12">
+        <div class="m-4 border-2 border-black border-r-4 border-b-4 bg-white flex overflow-x-hidden relative">
+            <div class="animate-marquee whitespace-nowrap p-4">
+                <h2 class="text-xl md:text-3xl text-center">Website Developer | Website Designer | WordPress Expert | Website Developer | Website Designer | WordPress Expert | Dog Walker |</h2>
             </div>
+            <div class="animate-marquee2 whitespace-nowrap absolute top-0 p-4">
+                <h2 class="text-xl md:text-3xl text-center">Website Developer | Website Designer | WordPress Expert | Website Developer | Website Designer | WordPress Expert | Dog Walker |</h2>
+            </div>
+        </div>
+    </section>
+    <div class="grid grid-cols-6 md:grid-cols-12 gap-4 m-4">
+        <section class="bg-gray-200 p-4 border-2 border-black col-span-6 md:col-span-4 grid content-end">
+            <div class="speech-bubble p-4 justify-self-center">
+                <h2 class="text-xl">Hello!</h2>
+                <p class="text-sm">I'm Braeden, a Web Developer. Cras scelerisque, dolor vitae suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.</p>
+            </div>
+            <div class="max-w-sm justify-self-center"><img class="max-w-full" src="~/assets/img/super-mario.gif" alt="Mario"></div>
         </section>
 
-        <section class="bg-gray-200 border-2 border-black col-span-2 md:col-span-3">
+        <section class="bg-gray-200 border-2 border-black col-span-6 md:col-span-8">
             <div class="border-b-2 border-black">
                 <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
                     Portfolio Data
@@ -22,17 +33,14 @@
                     </svg>
                 </h2>
             </div>
-
-            <div    
-                v-for="item in portfolio_items" :key="item.id"
-                class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white"
-            >
-                <a :href="item.link" target="_blank" class="block text-blue-700 underline mb-2">{{ item.title }}</a>
-                <p  class="text-md">{{ item.description }}</p>
-            </div>
+            <Portfolio 
+                v-if="portfolio_items"
+                :portfolio_items="portfolio_items"
+                class="flex"
+            />
         </section>
         
-        <section class="bg-gray-200 border-2 border-black col-span-2">
+        <section class="bg-gray-200 border-2 border-black col-span-6">
             <div class="border-b-2 border-black">
                 <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
                     User Data
@@ -48,15 +56,24 @@
                 </h2>
             </div>
             <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
-                <h3 class="text-md mb-4 uppercase">Interests</h3>
-                <p class="text-md leading-6">Although I am a WordPress developer by trade, I have quickly developed a hobby for building projects using the Vue framework Nuxt.<br> Hence this website.</p>
+                <Tabs>
+                    <Tab active="true" title="Interests">
+                        Although I am a WordPress developer by trade, I have quickly developed a hobby for building projects using the Vue framework Nuxt.<br> Hence this website.
+                    </Tab>
+                    <Tab title="Second">
+                        Cras scelerisque, dolor vitae suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.
+                    </Tab>
+                    <Tab title="Third">
+                        Morbi posuere, mauris eu vehicula tempor, nibh orci consectetur tortor, id eleifend dolor sapien ut augue.
+                    </Tab>
+                </Tabs>
             </div>
         </section>
         
-        <section class="bg-gray-200 border-2 border-black col-span-2">
+        <section class="bg-gray-200 border-2 border-black col-span-6">
             <div class="border-b-2 border-black">
                 <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
-                    Contact Details
+                    Communication
                     <svg class="-mr-5" width="50px" height="50px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <path d="m32 34h36v4h-4v4h-4v4h-4v4h-4v4h-4v-4h-4v-4h-4v-4h-4v-4h-4zm0 4v4h4v4h4v4h4v4h4v4h4v-4h4v-4h4v-4h4v-4h4v-4h4v28h-44v-28z" fill-rule="evenodd"/>
                     </svg>
@@ -80,28 +97,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    let router = useRouter()
-
-    const portfolio_items = [
-        {
-            id: 1,
-            title: 'Recipe Website',
-            link: 'https://recipes.braedenbeaulieu.ca/',
-            description: 'This is my personal recipe website!'
-        },
-        {
-            id: 2,
-            title: 'Elev8 Web Studio',
-            link: 'https://www.elev8webstudio.com/',
-            description: 'Professional WordPress website development, design, hosting and maintenance.'
-        },
-        {
-            id: 3,
-            title: 'Recipe Website',
-            link: 'https://recipes.braedenbeaulieu.ca/',
-            description: 'This is my personal recipe website!'
-        },
-    ]
+    const { data: portfolio_items } = useFetch('/api/portfolio')
 
     let contact_button_url = ref('https://twitter.com/braedenbeaulieu')
     let contact_methods = [
