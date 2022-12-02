@@ -4,7 +4,7 @@
             <li 
                 v-for="title in tabTitles" 
                 :key="title"
-                class="tabs-header-item p-2 border-b-2 border-black grid content-center flex-1 bg-gray-300 relative"
+                class="tabs-header-item w-auto p-2 border-b-2 border-black grid content-center flex-1 bg-gray-300 relative"
                 :class="{ selected: selectedTitle === title}"
                 @click="selectedTitle = title"
             >
@@ -26,10 +26,6 @@
 </script>
 
 <style>
-.tabs-header-item {
-    width: 33%;
-}
-
 .tabs-header-item.selected {
     background-color: white;
     border-bottom: 0;

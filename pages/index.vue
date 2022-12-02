@@ -2,10 +2,10 @@
     <section class="bg-gray-200 p-4 m-4 border-2 border-black col-span-12">
         <div class="m-4 border-2 border-black border-r-4 border-b-4 bg-white flex overflow-x-hidden relative">
             <div class="animate-marquee whitespace-nowrap p-4">
-                <h2 class="text-xl md:text-3xl text-center">Website Developer | Website Designer | WordPress Expert | Website Developer | Website Designer | WordPress Expert | Dog Walker |</h2>
+                <h2 class="text-xl md:text-3xl text-center">Website Developer | WordPress Expert | Website Developer | WordPress Expert | Dog Walker |</h2>
             </div>
             <div class="animate-marquee2 whitespace-nowrap absolute top-0 p-4">
-                <h2 class="text-xl md:text-3xl text-center">Website Developer | Website Designer | WordPress Expert | Website Developer | Website Designer | WordPress Expert | Dog Walker |</h2>
+                <h2 class="text-xl md:text-3xl text-center">Website Developer | WordPress Expert | Website Developer | WordPress Expert | Dog Walker |</h2>
             </div>
         </div>
     </section>
@@ -13,7 +13,7 @@
         <section class="bg-gray-200 p-4 border-2 border-black col-span-6 md:col-span-4 grid content-end">
             <div class="speech-bubble p-4 justify-self-center">
                 <h2 class="text-xl">Hello!</h2>
-                <p class="text-sm">I'm Braeden, a Web Developer. Cras scelerisque, dolor vitaes suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.</p>
+                <p class="text-sm">I'm Braeden, a Web Developer at Elev8 Web Studio. Take a look at some of the website projects I've created for clients in and around around Windsor & Essex County!</p>
             </div>
             <div class="max-w-sm justify-self-center"><img class="max-w-full" src="~/assets/img/super-mario.gif" alt="Mario"></div>
         </section>
@@ -57,14 +57,15 @@
             </div>
             <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
                 <Tabs>
-                    <Tab active="true" title="Interests">
-                        Although I am a WordPress developer by trade, I have quickly developed a hobby for building projects using the Vue framework Nuxt.<br> Hence this website.
+                    <Tab active="true" title="About">
+                        I am a full stack web developer! I have been building things on the web for over 6 years working extensively with PHP and Javascript.
+                        My favourite frameworks to build projects with are Nuxt.js and WordPress.
                     </Tab>
-                    <Tab title="Second">
-                        Cras scelerisque, dolor vitae suscipit efficitur, risus orci sagittis velit, ac molestie nulla tortor id augue.
+                    <Tab title="Work">
+                        I have a full time job as a WordPress developer, developing and maintaining custom themes and plugins for several clients.
                     </Tab>
-                    <Tab title="Third">
-                        Morbi posuere, mauris eu vehicula tempor, nibh orci consectetur tortor, id eleifend dolor sapien ut augue.
+                    <Tab title="Play">
+                        Outside of work I can be found walking my dog and playing music.
                     </Tab>
                 </Tabs>
             </div>
@@ -114,7 +115,6 @@
     ]
     
     let dropdown_input = (method: any) => {
-        console.log(method.value)
         contact_button_url.value = method.value
     }
 </script>
@@ -128,37 +128,6 @@
         /* margin-left: 8px; */
         border: 2px solid black;
     }
-    /* 
-    .speech-bubble::before {
-        content: '';
-        position: absolute;
-        left: -4px;
-        top: 50%;
-        width: 0;
-        height: 0;
-        border: 24px solid transparent;
-        border-right-color: #000000;
-        border-left: 0;
-        border-bottom: 0;
-        margin-top: -10px;
-        margin-left: -20px;
-    }
-
-    .speech-bubble::after {
-        content: '';
-        position: absolute;
-        left: -4px;
-        top: 50%;
-        width: 0;
-        height: 0;
-        border: 20px solid transparent;
-        border-right-color: #ffffff;
-        border-left: 0;
-        border-bottom: 0;
-        margin-top: -7.5px;
-        margin-left: -16px;
-    } */
-
     
     .speech-bubble::before {
         content: '';
@@ -191,6 +160,4 @@
         margin-left: -10px;
         margin-bottom: -20px;
     }
-    /* @media(min-width: 768px) {
-    } */
 </style>

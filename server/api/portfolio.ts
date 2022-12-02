@@ -1,30 +1,28 @@
 export default defineEventHandler(async (event) => {
-    const config = useRuntimeConfig()
-
     const portfolio_items = [
         {
             id: 1,
-            title: 'Recipe Website',
-            link: 'https://recipes.braedenbeaulieu.ca/',
-            description: 'This is my personal recipe website!'
+            title: 'Elev8 Web Studio',
+            link: 'https://www.elev8webstudio.com/',
+            description: 'Professional WordPress website development, design, hosting and maintenance.'
         },
         {
             id: 2,
-            title: 'Elev8 Web Studio',
-            link: 'https://www.elev8webstudio.com/',
-            description: 'Professional WordPress website development, design, hosting and maintenance.'
+            title: 'We Build a Dream',
+            link: 'https://www.webuildadream.com/',
+            description: ''
         },
         {
             id: 3,
-            title: 'Recipe Website',
-            link: 'https://recipes.braedenbeaulieu.ca/',
-            description: 'This is my personal recipe website!',
+            title: 'Windsor Film Festival',
+            link: 'https://windsorfilmfestival.com/',
+            description: '',
         },
         {
             id: 4,
-            title: 'Elev8 Web Studio',
-            link: 'https://www.elev8webstudio.com/',
-            description: 'Professional WordPress website development, design, hosting and maintenance.'
+            title: 'The Hospice',
+            link: 'https://www.thehospice.ca/',
+            description: ''
         },
         {
             id: 5,
@@ -34,15 +32,33 @@ export default defineEventHandler(async (event) => {
         },
         {
             id: 6,
-            title: 'Elev8 Web Studio',
-            link: 'https://www.elev8webstudio.com/',
-            description: 'Professional WordPress website development, design, hosting and maintenance.'
+            title: 'Barrels Bottles & Brews',
+            link: 'https://barrelsbottlesbrews.ca/',
+            description: ''
         },
         {
             id: 7,
-            title: 'Recipe Website',
-            link: 'https://recipes.braedenbeaulieu.ca/',
-            description: 'This is my personal recipe website!'
+            title: 'Downtown Windsor BIA',
+            link: 'https://www.downtownwindsor.ca/',
+            description: ''
+        },
+        {
+            id: 8,
+            title: 'Hockey for Hospice',
+            link: 'https://www.hockeyforhospice.com/',
+            description: ''
+        },
+        {
+            id: 9,
+            title: 'Windsor Symphony Orchestra',
+            link: 'https://www.windsorsymphony.com/',
+            description: ''
+        },
+        {
+            id: 10,
+            title: 'YQG Made',
+            link: 'https://www.yqgmade.ca/',
+            description: ''
         },
     ]
     
