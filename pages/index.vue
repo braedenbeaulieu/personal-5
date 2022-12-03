@@ -1,13 +1,6 @@
 <template>
-    <section class="bg-gray-200 p-4 m-4 border-2 border-black col-span-12">
-        <div class="m-4 border-2 border-black border-r-4 border-b-4 bg-white flex overflow-x-hidden relative">
-            <div class="animate-marquee whitespace-nowrap p-4">
-                <h2 class="text-xl md:text-3xl text-center">Website Developer | WordPress Expert | Website Developer | WordPress Expert | Dog Walker |</h2>
-            </div>
-            <div class="animate-marquee2 whitespace-nowrap absolute top-0 p-4">
-                <h2 class="text-xl md:text-3xl text-center">Website Developer | WordPress Expert | Website Developer | WordPress Expert | Dog Walker |</h2>
-            </div>
-        </div>
+    <section class="bg-gray-200 p-2 m-4 border-2 border-black col-span-12">
+        <Marquee :message="'Website Developer | WordPress Expert | Website Developer | WordPress Expert | Dog Walker |'" />
     </section>
     <div class="grid grid-cols-6 md:grid-cols-12 gap-4 m-4">
         <section class="bg-gray-200 p-4 border-2 border-black col-span-6 md:col-span-4 grid content-end">
@@ -59,7 +52,7 @@
                 <Tabs>
                     <Tab active="true" title="About">
                         I am a full stack web developer! I have been building things on the web for over 6 years working extensively with PHP and Javascript.
-                        My favourite frameworks to build projects with are Nuxt.js and WordPress.
+                        My preffered frameworks to build projects with are Nuxt.js and WordPress.
                     </Tab>
                     <Tab title="Work">
                         I have a full time job as a WordPress developer, developing and maintaining custom themes and plugins for several clients.

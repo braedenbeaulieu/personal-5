@@ -60,6 +60,36 @@ export default defineEventHandler(async (event) => {
             link: 'https://www.yqgmade.ca/',
             description: ''
         },
+        {
+            id: 11,
+            title: 'Best of Windsor Essex',
+            link: 'https://www.bestofwindsoressex.ca/',
+            description: ''
+        },
+        {
+            id: 12,
+            title: 'Erie SHores Health Foundation',
+            link: 'https://www.eshf.ca/',
+            description: ''
+        },
+        {
+            id: 13,
+            title: 'Highline Mushrooms',
+            link: 'https://www.highlinemushrooms.com/',
+            description: ''
+        },
+        {
+            id: 14,
+            title: 'Hospice for Life Foundation',
+            link: 'https://www.hospiceforlifefoundation.ca/',
+            description: ''
+        },
+        {
+            id: 15,
+            title: 'W.E. Heart Local',
+            link: 'https://www.weheartlocal.ca/',
+            description: ''
+        },
     ]
     
     return portfolio_items
