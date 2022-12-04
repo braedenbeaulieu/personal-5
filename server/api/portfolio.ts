@@ -68,7 +68,7 @@ export default defineEventHandler(async (event) => {
         },
         {
             id: 12,
-            title: 'Erie SHores Health Foundation',
+            title: 'Erie Shores Health Foundation',
             link: 'https://www.eshf.ca/',
             description: ''
         },
