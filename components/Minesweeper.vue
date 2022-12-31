@@ -9,6 +9,18 @@
 				<button id="hard-mode">Hard</button>
 			</div>
 		</div>
+        <div id="modal" class="p-4 text-center relative flex flex-col items-center justify-center bg-white">
+            <div class="bg-white w-full border-b-2 border-black absolute top-0 left-0 flex justify-start">
+                <div class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
+                    <span class="-mr-[2px] -mt-[2px]">x</span>
+                </div>
+                <div class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
+                    <span class="-mr-[2px]">-</span>
+                </div>
+            </div>
+            <p class="text-lg my-2">You Lose!</p>
+            <button id="play-again" class="block text-center relative w-36 h-12 mx-auto bg-black z-10 mt-1 -mb-2"><div class="w-full h-full leading-5 bg-white hover:bg-white absolute z-0 border-2 border-black p-2 -top-1 -left-1 hover:top-0 hover:left-0">Play</div></button>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -19,6 +31,8 @@
         columns: number
         board: HTMLElement|null
         first_click: boolean
+        bomb_sound: any|null
+        fireworks_sound: any|null
 
         constructor(container: HTMLElement|null) {
             this.container = container
@@ -334,16 +348,87 @@
             this.leftClick(cell)
         }
 
+        showConfetti() {
+            this.fireworks_sound.play()
+            let end = Date.now() + 2500
+            let colors = ['#bb0000', '#ffffff'];
+
+            (function frame() {
+                // @ts-ignore
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                })
+                // @ts-ignore
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                })
+
+                if(Date.now() < end) {
+                    console.log('hello')
+                    requestAnimationFrame(frame);
+                }
+            }())
+        }
+
+        showBombConfetti() {
+            this.bomb_sound.play()
+            let defaults = {
+                spread: 360,
+                ticks: 50,
+                gravity: 0,
+                decay: 0.94,
+                startVelocity: 30,
+                shapes: ['star'],
+                colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8']
+            }
+
+            function shoot() {
+                // @ts-ignore
+                confetti({
+                    ...defaults,
+                    particleCount: 40,
+                    scalar: 1.2,
+                    shapes: ['star']
+                })
+
+                // @ts-ignore
+                confetti({
+                    ...defaults,
+                    particleCount: 10,
+                    scalar: 0.75,
+                    shapes: ['circle']
+                })
+            }
+
+            setTimeout(shoot, 0)
+            setTimeout(shoot, 100)
+            setTimeout(shoot, 200)
+        }
+
         loseGame() {
+            this.toggleModal('You lose!')
+            this.showBombConfetti()
             this.showAllBombs()
-            setTimeout(() => {
-                alert('You lose!')
-                this.resetBoard()
-            }, 50)
         }
         winGame() {
-            alert('You Win!!')
-            this.resetBoard()
+            this.toggleModal('You WIN!')
+            this.showConfetti()
+        }
+
+        toggleModal(message: string) {
+            let modal = document.getElementById('modal') as HTMLElement
+            if(!modal || modal == null) return
+            modal.classList.toggle('open')
+            // @ts-ignore
+            modal.querySelector('p').textContent = message
         }
 
         updateFlagCounter(operation: string) {
@@ -361,6 +446,12 @@
         }
 
         initEventListeners() {
+
+            document.querySelector('#play-again')!.addEventListener('click', (e): void => {
+                this.toggleModal('')
+                this.resetBoard()
+            })
+
             document.querySelector('#easy-mode')!.addEventListener('click', (e): void => {
                 document.querySelector<HTMLElement>('.difficulty-selector')!.dataset.difficulty = 'easy'
                 this.setDifficulty('easy')
@@ -399,7 +490,16 @@
     }
 
     onMounted(() => {
+        let explosion = new Audio('/explosion.wav');
+        let fireworks = new Audio('/fireworks.wav');
         let board = new Minesweeper(document.getElementById('minesweeper-game'))
+
+        if(explosion) {
+            board.bomb_sound = explosion
+        }
+        if(fireworks) {
+            board.fireworks_sound = fireworks
+        }
         board.render()
     })
 </script>
@@ -412,13 +512,30 @@
 
         color-scheme: light dark;
         color: rgba(255, 255, 255, 0.87);
-        background-color: #242424;
-
         font-synthesis: none;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         -webkit-text-size-adjust: 100%;
+    }
+
+    #modal {
+        position: fixed;
+        top: calc(50% - 60px);
+        left: -150vw;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 240px;
+        height: 120px;
+        /* background-color: rgb(23, 158, 203); */
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, .2);
+        border: 2px solid black;
+        transition: left .15s;
+    }
+    
+    #modal.open {
+        left: 0;
     }
 
     .container {
