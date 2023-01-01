@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="minsweeper-container">
 			<h2 id="flag-counter">40</h2>
 			<div id="minesweeper-game"></div>
 			<div class="difficulty-selector">
@@ -9,6 +9,9 @@
 				<button id="hard-mode">Hard</button>
 			</div>
 		</div>
+        <div class="mobile-message">
+            <p class="text-2xl text-center py-3">Your screen size is too small.</p>
+        </div>
         <div id="modal" class="p-4 text-center relative flex flex-col items-center justify-center bg-white">
             <div class="bg-white w-full border-b-2 border-black absolute top-0 left-0 flex justify-start">
                 <div id="close" class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
@@ -544,12 +547,27 @@
         left: 0;
     }
 
-    .container {
+    .minsweeper-container {
         max-width: 1050px;
         width: 100%;
         padding: 0 15px;
         margin: 0 auto;
+        display: none;
     }
+
+    .mobile-message {
+        display: block;
+    }
+
+    @media screen and (min-width: 800px) {
+        .minsweeper-container {
+            display: block;
+        }
+        .mobile-message {
+            display: none;
+        }
+    }
+
 
     h1 {
         margin: 30px 0 10px;
