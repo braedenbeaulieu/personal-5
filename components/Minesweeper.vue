@@ -11,10 +11,10 @@
 		</div>
         <div id="modal" class="p-4 text-center relative flex flex-col items-center justify-center bg-white">
             <div class="bg-white w-full border-b-2 border-black absolute top-0 left-0 flex justify-start">
-                <div class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
+                <div id="close" class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
                     <span class="-mr-[2px] -mt-[2px]">x</span>
                 </div>
-                <div class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
+                <div id="minimize" class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
                     <span class="-mr-[2px]">-</span>
                 </div>
             </div>
@@ -446,12 +446,18 @@
         }
 
         initEventListeners() {
-
+            document.querySelector('#minimize')!.addEventListener('click', (e): void => {
+                this.toggleModal('')
+                this.resetBoard()
+            })
+            document.querySelector('#close')!.addEventListener('click', (e): void => {
+                this.toggleModal('')
+                this.resetBoard()
+            })
             document.querySelector('#play-again')!.addEventListener('click', (e): void => {
                 this.toggleModal('')
                 this.resetBoard()
             })
-
             document.querySelector('#easy-mode')!.addEventListener('click', (e): void => {
                 document.querySelector<HTMLElement>('.difficulty-selector')!.dataset.difficulty = 'easy'
                 this.setDifficulty('easy')
