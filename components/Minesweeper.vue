@@ -3,6 +3,7 @@
         <div class="minsweeper-container">
 			<h2 id="flag-counter">40</h2>
 			<div id="minesweeper-game"></div>
+            <p class="small-text">Keyboard Controls: Option for flag. Command or Space for click. Move with arrow keys.</p>
 			<div class="difficulty-selector">
 				<button id="easy-mode">Easy</button>
 				<button id="normal-mode">Normal</button>
@@ -68,9 +69,10 @@
                 case 'ArrowUp':
                     return 'up'
                 case ' ':
-                    return 'space'
                 case 'Meta':
-                    return 'cmd'
+                    return 'left-click'
+                case 'Alt':
+                    return 'right-click'
                 case 'Enter':
                     return 'enter'
                 default:
@@ -228,7 +230,7 @@
         }
 
         addBombs(exclude: number|null = null) {
-            console.log('Adding bombs...')
+            // console.log('Adding bombs...')
             return new Promise(resolve => {
                 // console.log('adding bombs')
                 let cells = this.getAllCells()
@@ -253,7 +255,7 @@
 
         scanBoard() {
             return new Promise(resolve => {
-                console.log('Scanning board')
+                // console.log('Scanning board')
         
                 for(let i = 0; i < this.rows; i++) {
                     for(let j = 0; j < this.columns; j++) {
@@ -351,7 +353,7 @@
         }
 
         leftClick(clicked_cell: any): void {
-            console.log('Left click')
+            // console.log('Left click')
             if(this.isEveryCellChecked()) {
                 this.winGame()
             }
@@ -419,12 +421,11 @@
         }
 
         async firstClick(cell: any) {
-            console.log('First click')
+            // console.log('First click')
             this.setDifficulty(null)
             await this.addBombs(cell.dataset.index)
             await this.scanBoard()
             setTimeout(() => {
-                console.log('board scanned')
                 this.leftClick(cell)
             }, 10) 
         }
@@ -453,7 +454,6 @@
                 })
 
                 if(Date.now() < end) {
-                    console.log('hello')
                     requestAnimationFrame(frame);
                 }
             }())
@@ -537,15 +537,13 @@
         initEventListeners() {
             document.addEventListener('keydown', (e): void => {
                 e.preventDefault()
-
                 let key = this.getKey(e.key)
                 if(!key) return
 
                 let selected_cell = this.getSelectedCell() as HTMLElement
                 if(!selected_cell) return
 
-                if(key == 'space') {
-                    console.log('Clicked space: ', this.first_click)
+                if(key == 'left-click') {
                     if(this.first_click) {
                         this.firstClick(selected_cell)
                         this.first_click = false
@@ -553,8 +551,8 @@
                         this.leftClick(selected_cell)
                     }
                 }
-                
-                if(key == 'cmd') {
+
+                if(key == 'right-click') {
                     this.rightClick(selected_cell)
                 }
                 
@@ -683,6 +681,11 @@
         display: block;
     }
 
+    .small-text {
+        text-align: center;
+        font-size: 12px;
+    }
+
     @media screen and (min-width: 800px) {
         .minsweeper-container {
             display: block;
@@ -713,7 +716,7 @@
     }
 
     #board {
-        margin: 40px auto;
+        margin: 40px auto 4px;
         /* border: 1px solid black; */
         display: flex;
         flex-wrap: wrap;
