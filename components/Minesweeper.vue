@@ -57,6 +57,27 @@
             this.initEventListeners()
         }
 
+        getKey(key: string): string|false {
+            switch(key) {
+                case 'ArrowRight':
+                    return 'right'
+                case 'ArrowLeft':
+                    return 'left'
+                case 'ArrowDown':
+                    return 'down'
+                case 'ArrowUp':
+                    return 'up'
+                case ' ':
+                    return 'space'
+                case 'Meta':
+                    return 'cmd'
+                case 'Enter':
+                    return 'enter'
+                default:
+                    return false
+            }
+        }
+
         createCell(x: number, y: number , is_bomb: boolean, index: string): HTMLElement {
             let cell = document.createElement('div')
             cell.classList.add('cell')
@@ -75,6 +96,56 @@
 
         getCellByXY(x: number, y: number): HTMLElement {
             return this.getBoard().querySelector(`.cell[data-x="${x}"][data-y="${y}"]`)! as HTMLElement
+        }
+
+        selectCell(cell: HTMLElement) {
+            let current_selection = this.getSelectedCell()
+            if(current_selection) {
+                current_selection.classList.remove('selected')
+            }
+            cell.classList.add('selected')
+        }
+
+        getSelectedCell(): HTMLElement|false {
+            let current_selection = document.querySelector('.cell.selected') as HTMLElement
+            if(current_selection) return current_selection
+            
+            current_selection = document.querySelector('.cell[data-x="0"][data-y="0"]') as HTMLElement
+            if(current_selection) {
+                current_selection.classList.add('selected')
+                return current_selection
+            }
+
+            return false
+        }
+
+        moveSelectedCell(selected_cell: HTMLElement, direction: string) {
+            let next_cell
+            let x = selected_cell.dataset.x ? parseInt(selected_cell.dataset.x) : 0
+            let y = selected_cell.dataset.y ? parseInt(selected_cell.dataset.y) : 0
+
+            // console.log(x, y)
+            switch(direction) {
+                case 'right':
+                    y++
+                    if(y > 15) y = 0
+                    break
+                case 'left':
+                    y--
+                    if(y < 0) y = 15
+                    break
+                case 'up':
+                    x--
+                    if(x < 0) x = 15
+                    break
+                case 'down':
+                    x++
+                    if(x > 15) x = 0
+                    break
+            }
+
+            next_cell = this.getCellByXY(x, y)
+            if(next_cell) this.selectCell(next_cell)
         }
 
         doesCellHaveBomb(x: number, y: number): boolean {
@@ -157,6 +228,7 @@
         }
 
         addBombs(exclude: number|null = null) {
+            console.log('Adding bombs...')
             return new Promise(resolve => {
                 // console.log('adding bombs')
                 let cells = this.getAllCells()
@@ -181,7 +253,7 @@
 
         scanBoard() {
             return new Promise(resolve => {
-                console.log('scanning')
+                console.log('Scanning board')
         
                 for(let i = 0; i < this.rows; i++) {
                     for(let j = 0; j < this.columns; j++) {
@@ -279,6 +351,7 @@
         }
 
         leftClick(clicked_cell: any): void {
+            console.log('Left click')
             if(this.isEveryCellChecked()) {
                 this.winGame()
             }
@@ -286,6 +359,8 @@
             if(!clicked_cell) return
             if(clicked_cell.dataset.isChecked === '1') return
             clicked_cell.dataset.isChecked = '1'
+
+            this.selectCell(clicked_cell)
 
             if(clicked_cell.dataset.flagged == 'true') {
                 this.updateFlagCounter('up')
@@ -344,11 +419,14 @@
         }
 
         async firstClick(cell: any) {
-            // console.log('first click!')
+            console.log('First click')
             this.setDifficulty(null)
             await this.addBombs(cell.dataset.index)
             await this.scanBoard()
-            this.leftClick(cell)
+            setTimeout(() => {
+                console.log('board scanned')
+                this.leftClick(cell)
+            }, 10) 
         }
 
         showConfetti() {
@@ -426,6 +504,14 @@
             this.showConfetti()
         }
 
+        closeModal() {
+            let modal = document.getElementById('modal') as HTMLElement
+            if(!modal || modal == null) return
+            modal.classList.remove('open')
+            // @ts-ignore
+            modal.querySelector('p').textContent = ''
+        }
+
         toggleModal(message: string) {
             let modal = document.getElementById('modal') as HTMLElement
             if(!modal || modal == null) return
@@ -449,6 +535,44 @@
         }
 
         initEventListeners() {
+            document.addEventListener('keydown', (e): void => {
+                e.preventDefault()
+
+                let key = this.getKey(e.key)
+                if(!key) return
+
+                let selected_cell = this.getSelectedCell() as HTMLElement
+                if(!selected_cell) return
+
+                if(key == 'space') {
+                    console.log('Clicked space: ', this.first_click)
+                    if(this.first_click) {
+                        this.firstClick(selected_cell)
+                        this.first_click = false
+                    } else {
+                        this.leftClick(selected_cell)
+                    }
+                }
+                
+                if(key == 'cmd') {
+                    this.rightClick(selected_cell)
+                }
+                
+                if(key == 'enter') {
+                    this.closeModal()
+                    this.resetBoard()
+                }
+                
+                if(['right', 'left', 'up', 'down'].indexOf(key) >= -1) {
+                    let error_cell = document.querySelector('.cell.error') as HTMLElement
+                    if(error_cell) {
+                        error_cell.classList.remove('error')
+                    }
+
+                    this.moveSelectedCell(selected_cell, key)
+                }
+            })
+
             document.querySelector('#minimize')!.addEventListener('click', (e): void => {
                 this.toggleModal('')
                 this.resetBoard()
@@ -688,8 +812,8 @@
     }
 
     .cell.safe::after {
-        content: unset;
-        /* background-color: green; */
+        /* content: unset; */
+        background-color: transparent;
     }
 
     .cell.boom {
@@ -698,5 +822,15 @@
         background-repeat: no-repeat;
         background-size: 80%;
         background-position: center;
+    }
+
+    .cell.selected::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        border: 5px solid rgba(0, 109, 187, .9);
     }
 </style>
