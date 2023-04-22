@@ -6,7 +6,7 @@
         <section class="bg-gray-200 p-4 border-2 border-black col-span-6 md:col-span-4 grid content-end">
             <div class="speech-bubble p-4 justify-self-center">
                 <h2 class="text-xl">Hello!</h2>
-                <p class="text-sm">I'm Braeden, a Web Developer at Elev8 Web Studio. Take a look at some of the website projects I've created for clients in and around around Windsor & Essex County!</p>
+                <p class="text-sm">I'm Braeden, a Web Developer at Elev8 Web Studio. Take a look at some of the website projects I've created for clients in and around Windsor & Essex County!</p>
             </div>
             <div class="max-w-sm justify-self-center"><img class="max-w-full" src="~/assets/img/me-waving.webp" alt="Mario"></div>
         </section>
