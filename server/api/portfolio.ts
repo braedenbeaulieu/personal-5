@@ -90,6 +90,12 @@ export default defineEventHandler(async (event) => {
             link: 'https://www.weheartlocal.ca/',
             description: ''
         },
+        {
+            id: 15,
+            title: 'Minesweeper',
+            link: '/minesweeper',
+            description: ''
+        },
     ]
     
     return portfolio_items
