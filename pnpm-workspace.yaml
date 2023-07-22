@@ -1,9 +1,0 @@
-packages:
-  - "assets"
-  - "components"
-  - "layouts"
-  - "pages"
-  - "public"
-  - "server"
-  - "types"
-  - "content"
