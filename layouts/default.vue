@@ -1,6 +1,6 @@
 <template>
+    <Header />
     <main class="font-mono-2 text-gray-800">
-        <Header />
         <div class="max-w-6xl mx-auto">
             <slot />
         </div>
