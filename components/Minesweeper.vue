@@ -13,7 +13,7 @@
         <div class="mobile-message">
             <p class="text-2xl text-center py-3">Your screen size is too small.</p>
         </div>
-        <div id="modal" class="p-4 text-center relative flex flex-col items-center justify-center bg-white">
+        <div id="minesweeper-modal" class="p-4 text-center relative flex flex-col items-center justify-center bg-white">
             <div class="bg-white w-full border-b-2 border-black absolute top-0 left-0 flex justify-start">
                 <div id="close" class="border-r-2 border-black h-4 w-5 flex justify-center items-center cursor-pointer hover:bg-gray-300">
                     <span class="-mr-[2px] -mt-[2px]">x</span>
@@ -650,7 +650,7 @@
         -webkit-text-size-adjust: 100%;
     }
 
-    #modal {
+    #minesweeper-modal {
         position: fixed;
         top: calc(50% - 60px);
         left: -150vw;
@@ -665,7 +665,7 @@
         transition: left .15s;
     }
     
-    #modal.open {
+    #minesweeper-modal.open {
         left: 0;
     }
 
@@ -700,7 +700,8 @@
         margin: 30px 0 10px;
         text-align: center;
     }
-    h2 {
+
+    .minsweeper-container h2 {
         margin: 50px 0;
         font-weight: 900;
         font-size: 5rem;
