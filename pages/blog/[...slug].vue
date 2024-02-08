@@ -74,4 +74,8 @@
     ul {
         margin-bottom: 1rem;
     }
+
+    li {
+        font-size: 1rem;
+    }
 </style>
