@@ -28,11 +28,7 @@
                 </h1>
             </div>
             <main class="mx-4 my-8">
-                <ContentDoc>
-                    <template #not-found>
-                        Post not found.
-                    </template>
-                </ContentDoc>
+                <ContentDoc />
             </main>
         </section>
     </main>
