@@ -1,3 +1,15 @@
+<script setup lang="ts">
+    const route = useRoute()
+    const slug = route.params.slug[0]
+
+    let title = 'Error 404'
+    if(slug) {
+        const { data } = await useAsyncData('blog', () => queryContent(`/blog/${slug}`).findOne())
+        if(data.value && data.value.hasOwnProperty('title')) {
+            title = data.value.title ? data.value.title : 'Error 404'
+        }
+    }
+</script>
 <template>
     <main>
         <section class="bg-gray-200 border-2 border-black col-span-6 md:col-span-8 m-4">
@@ -25,17 +37,41 @@
         </section>
     </main>
 </template>
-<script setup lang="ts">
-    const route = useRoute()
-    const slug = route.params.slug[0]
-
-    let title = 'Error 404'
-
-    if(slug) {
-        const { data } = await useAsyncData('blog', () => queryContent(`/blog/${slug}`).findOne())
-
-        if(data.value) {
-            title = data.value.title
-        }
+<style>
+    h1 {
+        font-size: 2.5rem;
+        margin: 2.5rem 0 1.5rem 0;
+        font-weight: 700;
     }
-</script>
+
+    h2 {
+        font-size: 2rem;
+        margin: 2.5rem 0 1.5rem 0;
+        line-height: 1.25;
+        font-weight: 700;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+        margin: 2.5rem 0 1.5rem 0;
+        line-height: 1.25;
+        font-weight: 600;
+    }
+
+    h4 {
+        font-size: 1.3rem;
+        margin: 2.5rem 0 1.5rem 0;
+        line-height: 1.25;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        font-weight: 400;
+    }
+
+    ul {
+        margin-bottom: 1rem;
+    }
+</style>
