@@ -27,51 +27,89 @@
                     </svg>
                 </h1>
             </div>
-            <main class="mx-4 my-8">
-                <ContentDoc />
-            </main>
+            <article class="mx-4 my-8 blog-content">
+                <ContentDoc>
+                    <template #not-found>
+                        <h2>Oops, there is no post!</h2>
+                        <NuxtLink to="/">Click here to return home.</NuxtLink>
+                    </template>
+                </ContentDoc>
+            </article>
         </section>
     </main>
 </template>
 <style>
-    h1 {
+    .blog-content {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .blog-content h1 {
         font-size: 2.5rem;
         margin: 2.5rem 0 1.5rem 0;
         font-weight: 700;
     }
 
-    h2 {
+    .blog-content h2 {
         font-size: 2rem;
         margin: 2.5rem 0 1.5rem 0;
         line-height: 1.25;
         font-weight: 700;
     }
 
-    h3 {
+    .blog-content h3 {
         font-size: 1.6rem;
         margin: 2.5rem 0 1.5rem 0;
         line-height: 1.25;
         font-weight: 600;
     }
 
-    h4 {
+    .blog-content h4 {
         font-size: 1.3rem;
         margin: 2.5rem 0 1.5rem 0;
         line-height: 1.25;
         font-weight: 600;
     }
 
-    p {
+    .blog-content p {
         font-size: 1rem;
         margin-bottom: 1rem;
         font-weight: 400;
     }
 
-    ul {
-        margin-bottom: 1rem;
+    .blog-content a:not([href^="#"]) {
+        color: #294ed1;
+        text-decoration: none;
+    }
+    
+    .blog-content a[href^="#"]::before {
+        content: '#';
+        font-size: 2rem;
+        padding-right: 1rem;
     }
 
-    li {
+    .blog-content a[href^="#"]:hover ::before {
+        text-decoration: none!important;
+    }
+
+    .blog-content a:hover, a:focus {
+        color: #1a07ed;
+        text-decoration: underline;
+    }
+
+    .blog-content ul {
+        margin-bottom: 1rem;
+        list-style: initial;
+        list-style-position: inside;
+    }
+
+    .blog-content li {
         font-size: 1rem;
+    }
+
+    .blog-content hr {
+        border-top: 1px solid;
+        margin: 1.8rem 0;
     }
 </style>
