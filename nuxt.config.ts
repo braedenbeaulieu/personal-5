@@ -27,5 +27,8 @@ export default defineNuxtConfig({
                 defer: true
             }]
         }
+    },
+    routeRules: {
+        '/': { prerender: true },
     }
 })
