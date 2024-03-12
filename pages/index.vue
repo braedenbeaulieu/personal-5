@@ -52,7 +52,7 @@
                 <Tabs>
                     <Tab active="true" title="About">
                         I am a full stack web developer! I have been building things on the web for over 6 years working extensively with PHP and Javascript.
-                        My preffered frameworks to build projects with are Nuxt.js and WordPress.
+                        My preferred frameworks to build projects with are Nuxt.js and WordPress.
                     </Tab>
                     <Tab title="Work">
                         I have a full time job as a WordPress developer, developing and maintaining custom themes and plugins for several clients.
