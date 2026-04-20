@@ -1,5 +1,4 @@
 <template>
-	<SpeedInsights />
 	<div>
 		<NuxtLayout>
 			<NuxtPage />
