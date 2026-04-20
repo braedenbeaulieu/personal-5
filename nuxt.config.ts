@@ -1,8 +1,7 @@
 export default defineNuxtConfig({
-    modules: [
-        '@nuxt/content',
-        '@nuxthq/studio'
-    ],
+    nitro: {
+        preset: 'cloudflare-pages'
+    },
     postcss: {
         plugins: {
             tailwindcss: {},
