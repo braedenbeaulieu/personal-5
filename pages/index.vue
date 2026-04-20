@@ -14,7 +14,7 @@
         <section class="bg-gray-200 border-2 border-black col-span-6 md:col-span-8">
             <div class="border-b-2 border-black">
                 <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
-                    Portfolio Data
+                    Portfolio
                     <svg class="-mr-1" width="28px" height="28px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <path d="m74.801 84.102h6.1992v6.1992h-6.1992z"/>
