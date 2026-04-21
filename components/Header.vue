@@ -5,14 +5,16 @@
 <template>
     <header class="font-mono-2 text-gray-800 w-full border-2 border-black bg-gray-300">
         <div class="max-w-6xl mx-auto py-2 px-4 flex justify-between items-center">
-            <NuxtLink
-                to="/"
-                class="h1 text-3xl font-bold pt-1 pb-2 flex items-center"
-                :aria-label="a11yTitle"
-            >
-                <span v-cloak aria-hidden="true">{{ title }}</span>
-                <span v-cloak aria-hidden="true" class="animate-blink ml-1">|</span>
-            </NuxtLink>
+            <h1>
+                <NuxtLink
+                    to="/"
+                    class="h1 text-3xl font-bold pt-1 pb-2 flex items-center"
+                    :aria-label="a11yTitle"
+                >
+                    <span v-cloak aria-hidden="true">{{ title }}</span>
+                    <span v-cloak aria-hidden="true" class="animate-blink ml-1">|</span>
+                </NuxtLink>
+            </h1>
             <div class="flex justify-end items-center">
                 <p class="flex items-center" v-html="date_str"></p>
             </div>
@@ -21,7 +23,7 @@
 </template>
 <script setup lang="ts">
 
-    const a11yTitle = ref('Braeden Beaulieu')
+    const a11yTitle = ref('braedenbeaulieu.ca')
     const title = ref('')
 
     // ---------- utils ----------
