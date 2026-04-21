@@ -54,7 +54,7 @@
     // ---------- typing ----------
     const typeHuman = async (text: string) => {
         for (let i = 0; i < text.length; i++) {
-            const correctChar = text[i] ?? ''
+            const correctChar = text[i] ?? ' '
 
             // randomly decide to make a mistake
             const shouldMistake = Math.random() < 0.10 && correctChar !== ' '
