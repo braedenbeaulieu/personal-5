@@ -37,15 +37,23 @@
             <div class="border-b-2 border-black">
                 <h2 class="h-16 mx-4 px-2 text-xl text-center uppercase flex items-center justify-between">
                     User Data
-                    <svg class="-mr-5" width="50px" height="50px" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <path d="m36 25h3.8438v15.277h-3.8438z"/>
-                            <path d="m44 25h3.7461v15.277h-3.7461z"/>
-                            <path d="m52 25v15.277h3.8438v-15.277z"/>
-                            <path d="m63.211 51.785h7.7891v15.477h-7.6914v3.8711h-3.8438v3.8672h-26.621v-3.8672h-3.8438v-23.215h34.211zm3.8438 11.508v-7.7383h-3.8438v7.7383z" fill-rule="evenodd"/>
+                    <svg class="-mr-5" width="50px" height="50px" viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="black" stroke="black" shape-rendering="crispEdges">
+
+                        <g fill-rule="evenodd">
+                            
+                            <!-- Steam -->
+                            <g>
+                            <rect class="steam" x="36" y="34" width="3" height="8"></rect>
+                            <rect class="steam" x="44" y="34" width="3" height="10"></rect>
+                            <rect class="steam" x="52" y="34" width="3" height="8"></rect>
+                            </g>
+
+                            <!-- Cup -->
+                            <path d="m63 52h8v15h-8v4h-4v4h-26v-4h-4v-23h34zm4 11v-8h-4v8z"></path>
                         </g>
                     </svg>
-
                 </h2>
             </div>
             <div class="m-4 p-4 border-2 border-black border-r-4 border-b-4 bg-white">
@@ -152,5 +160,22 @@
         border-right: 0;
         margin-left: -10px;
         margin-bottom: -20px;
+    }
+
+    /* Mug SVG */
+    .steam {
+        animation: rise 1.4s ease-in-out infinite;
+    }
+
+    .steam:nth-child(1) { animation-delay: 0s; }
+    .steam:nth-child(2) { animation-delay: 0.3s; }
+    .steam:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes rise {
+        0%   { transform: translateY(0); }
+        49.9%   { transform: translateY(0); }
+        50%  { transform: translateY(-6px); }
+        99.99%   { transform: translateY(-6px); }
+        100% { transform: translateY(0); }
     }
 </style>
